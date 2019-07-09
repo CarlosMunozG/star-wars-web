@@ -4,9 +4,13 @@ function MoviesPage(parentElement) {
   this.parentElement = parentElement;
   this.elements = null;
   this.movies = null;
+  this.loading = null;
 }
 
 MoviesPage.prototype.generate = async function() {
+  this.loading = new Loading(this.parentElement);
+  this.loading.generate();
+
   await this.connectToAPI();
   this.elements = `
     <header>
